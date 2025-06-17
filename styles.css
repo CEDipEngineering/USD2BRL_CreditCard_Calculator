@@ -1,10 +1,15 @@
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --background-color: #f8fafc;
-    --text-color: #1e293b;
-    --border-color: #e2e8f0;
+    --primary-color: #3b82f6;
+    --secondary-color: #60a5fa;
+    --background-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-color: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
     --success-color: #22c55e;
+    --input-bg: #1e293b;
+    --input-border: #334155;
+    --input-focus: #3b82f6;
 }
 
 * {
@@ -18,6 +23,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+    min-height: 100vh;
 }
 
 .container {
@@ -36,53 +42,97 @@ header h1 {
     margin-bottom: 0.5rem;
 }
 
+header p {
+    color: var(--text-secondary);
+}
+
 .calculator {
-    background: white;
+    background: var(--surface-color);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.main-input {
+    margin-bottom: 2rem;
+}
+
+.input-with-rate {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.input-with-rate input {
+    flex: 1;
+    height: 100%;
+}
+
+.rate-indicator {
+    background: var(--input-bg);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--input-border);
+    min-width: 150px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rate-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+#exchangeRateDisplay {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.rates-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .input-group {
     margin-bottom: 1.5rem;
 }
 
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
 label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
+    color: var(--text-secondary);
 }
 
 input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 0.5rem;
     font-size: 1rem;
-    transition: border-color 0.2s;
+    color: var(--text-color);
+    transition: all 0.2s;
 }
 
 input:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-button:hover {
-    background-color: var(--secondary-color);
+    display: none;
 }
 
 .results {
@@ -96,6 +146,7 @@ button:hover {
     justify-content: space-between;
     margin-bottom: 1rem;
     font-size: 1.1rem;
+    color: var(--text-secondary);
 }
 
 .result-item.total {
@@ -109,7 +160,36 @@ button:hover {
 footer {
     text-align: center;
     margin-top: 3rem;
-    color: #64748b;
+    color: var(--text-secondary);
+}
+
+.safety-margin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-label {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .toggle-label {
+    color: var(--primary-color);
 }
 
 @media (max-width: 640px) {
@@ -121,7 +201,64 @@ footer {
         padding: 1.5rem;
     }
 
+    .input-with-rate {
+        flex-direction: column;
+    }
+
+    .rates-container {
+        grid-template-columns: 1fr;
+    }
+
     header h1 {
         font-size: 1.5rem;
     }
+}
+
+.money-input-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.money-input-container input {
+    padding-right: 2.5rem;
+}
+
+.clear-button {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    cursor: pointer;
+    display: none;
+    width: auto;
+    line-height: 1;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.clear-button:hover {
+    color: var(--text-color);
+    background-color: var(--input-bg);
+}
+
+.money-input-container input:not(:placeholder-shown) + .clear-button {
+    display: block;
+}
+
+/* Remove spinner buttons from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 } 
