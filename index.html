@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USD to BRL Credit Card Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>USD to BRL Credit Card Calculator</h1>
+            <p>Calculate your credit card expenses with accurate conversion rates</p>
+        </header>
+
+        <main>
+            <div class="calculator">
+                <div class="input-group">
+                    <label for="usdAmount">Amount in USD ($)</label>
+                    <input type="number" id="usdAmount" placeholder="Enter amount in USD" step="0.01" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="exchangeRate">Exchange Rate (USD/BRL)</label>
+                    <input type="number" id="exchangeRate" placeholder="Enter exchange rate" step="0.0001" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="iofRate">IOF Rate (%)</label>
+                    <input type="number" id="iofRate" placeholder="Enter IOF rate" step="0.01" min="0" value="6.38">
+                </div>
+
+                <button id="calculate">Calculate</button>
+
+                <div class="results">
+                    <div class="result-item">
+                        <span>Amount in BRL:</span>
+                        <span id="brlAmount">R$ 0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span>IOF Amount:</span>
+                        <span id="iofAmount">R$ 0.00</span>
+                    </div>
+                    <div class="result-item total">
+                        <span>Total Amount:</span>
+                        <span id="totalAmount">R$ 0.00</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for Brazilian credit card users</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
