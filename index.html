@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USD to BRL Credit Card Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>USD to BRL Credit Card Calculator</h1>
+            <p>Calculate your credit card expenses with accurate conversion rates</p>
+        </header>
+
+        <main>
+            <div class="calculator">
+                <div class="main-input">
+                    <div class="input-group">
+                        <label for="usdAmount">Amount in USD ($)</label>
+                        <div class="input-with-rate">
+                            <div class="money-input-container">
+                                <input type="number" 
+                                       id="usdAmount" 
+                                       placeholder="Enter amount in USD" 
+                                       step="0.01" 
+                                       min="0" 
+                                       inputmode="decimal"
+                                       pattern="[0-9]*[.,]?[0-9]*">
+                                <button type="button" class="clear-button" id="clearUsdAmount" aria-label="Clear amount">×</button>
+                            </div>
+                            <div class="rate-indicator">
+                                <span class="rate-label">Current Rate:</span>
+                                <span id="exchangeRateDisplay">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rates-container">
+                    <div class="input-group">
+                        <div class="safety-margin-header">
+                            <label for="iofRate">IOF Rate (%)</label>
+                            <div class="toggle-container">
+                                <input type="checkbox" id="iofRateToggle" checked>
+                                <label for="iofRateToggle" class="toggle-label">Enabled</label>
+                            </div>
+                        </div>
+                        <input type="number" id="iofRate" placeholder="Enter IOF rate" step="0.01" min="0" value="3.5">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="safety-margin-header">
+                            <label for="safetyMargin">Safety Margin (%)</label>
+                            <div class="toggle-container">
+                                <input type="checkbox" id="safetyMarginToggle" checked>
+                                <label for="safetyMarginToggle" class="toggle-label">Enabled</label>
+                            </div>
+                        </div>
+                        <input type="number" id="safetyMargin" placeholder="Enter safety margin" step="0.01" min="0" value="3">
+                    </div>
+                </div>
+
+                <input type="hidden" id="exchangeRate">
+
+                <div class="results">
+                    <div class="result-item">
+                        <span>Amount in BRL:</span>
+                        <span id="brlAmount">R$ 0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span>IOF Amount:</span>
+                        <span id="iofAmount">R$ 0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Safety Margin Amount:</span>
+                        <span id="safetyAmount">R$ 0.00</span>
+                    </div>
+                    <div class="result-item total">
+                        <span>Total Amount:</span>
+                        <span id="totalAmount">R$ 0.00</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for Brazilian credit card users</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

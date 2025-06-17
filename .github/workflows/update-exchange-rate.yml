@@ -1,0 +1,36 @@
+name: Update Exchange Rate
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Runs every 30 minutes
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  update-rate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Fetch Exchange Rate
+        id: fetch-rate
+        run: |
+          RESPONSE=$(curl -s "https://api.exchangerate-api.com/v4/latest/USD")
+          RATE=$(echo $RESPONSE | jq -r '.rates.BRL')
+          TIMESTAMP=$(date +%s)
+          echo "rate=$RATE" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+      
+      - name: Update Cache File
+        run: |
+          echo '{
+            "rate": ${{ steps.fetch-rate.outputs.rate }},
+            "timestamp": ${{ steps.fetch-rate.outputs.timestamp }}
+          }' > data/exchange-rate.json
+      
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add data/exchange-rate.json
+          git commit -m "Update exchange rate" || exit 0
+          git push 
