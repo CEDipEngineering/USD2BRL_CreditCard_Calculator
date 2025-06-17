@@ -1,4 +1,4 @@
-# USD to BRL Credit Card Calculator
+# [USD to BRL Credit Card Calculator](https://cedipengineering.github.io/USD2BRL_CreditCard_Calculator/)
 
 A modern web application that helps Brazilian credit card users calculate their expenses in USD with accurate conversion rates, IOF tax, and safety margins.
 
@@ -62,7 +62,7 @@ This calculator helps Brazilian users make informed decisions when making purcha
 ### Local Setup
 1. Clone this repository
 2. Open `index.html` in your browser
-3. Or visit the [GitHub Pages site](https://[your-username].github.io/USD2BRL_CreditCard_Calculator/)
+3. Or visit the [GitHub Pages site](https://cedipengineering.github.io/USD2BRL_CreditCard_Calculator/)
 
 ### Exchange Rate Updates
 The exchange rate is automatically updated through a GitHub Action that:
