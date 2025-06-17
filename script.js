@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Format exchange rate
     const formatExchangeRate = (rate) => {
         return new Intl.NumberFormat('pt-BR', {
-            minimumFractionDigits: 4,
+            minimumFractionDigits: 2,
             maximumFractionDigits: 4
         }).format(rate);
     };
